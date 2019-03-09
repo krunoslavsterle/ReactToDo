@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./index.module.css";
 
-const Login = () => (
+const SignIn = () => (
   <div className={classes.Login}>
     <div className={classes.Wrap}>
       <form className={classes.Form}>
@@ -24,4 +24,4 @@ const Login = () => (
   </div>
 );
 
-export default Login;
+export default SignIn;

@@ -1,0 +1,19 @@
+.Header {
+  height: 56px;
+  height: 56px;
+  line-height: 56px;
+  vertical-align: middle;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #649daf;
+  align-content: center;
+}
+
+.Title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #403866;
+  text-transform: uppercase;
+  text-align: center;
+  padding-left: 30px;
+}
