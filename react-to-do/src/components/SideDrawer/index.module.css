@@ -1,0 +1,25 @@
+.SideDrawer {
+  position: fixed;
+  width: 50px;
+  height: 100%;
+  max-width: 70%;
+  left: 0;
+  top: 56px;
+  padding: 0px 10px;
+  background-color: #a5acaa;
+  box-sizing: border-box;
+  transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in; /* Firefox 4 */
+  -webkit-transition: all 0.1s ease-in; /* Safari 和 Chrome */
+  -o-transition: all 0.1s ease-in; /* Opera */
+}
+
+.Opened {
+  width: 60%;
+}
+
+@media (min-width: 600px) {
+  .Opened {
+    width: 280px;
+  }
+}
