@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 
 import Header from "../Header";
 import SideDrawer from "../SideDrawer";
+import Tasks from "../Tasks";
 
 class HomePage extends Component {
   render() {
@@ -13,7 +14,9 @@ class HomePage extends Component {
         <nav>
           <SideDrawer />
         </nav>
-        <main>Tasks</main>
+        <main>
+          <Tasks />
+        </main>
       </Fragment>
     );
   }
