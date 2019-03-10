@@ -1,0 +1,55 @@
+.TaskEdit {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.Widget {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: white;
+}
+
+.TaskButton {
+  text-align: left;
+  height: 100%;
+}
+
+.TaskButton input {
+  padding: 0;
+  margin: 0;
+  font-family: "Ubuntu", "sans-serif";
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.TaskButton textarea {
+  padding: 0;
+  margin: 0;
+  font-family: "Ubuntu", "sans-serif";
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ConfirmButton {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 36px;
+  margin: 10px 0;
+  background-color: #827ffe;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}

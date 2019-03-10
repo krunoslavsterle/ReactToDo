@@ -3,4 +3,25 @@
   margin-left: 50px;
   height: 100%;
   padding-top: 20px;
+  width: 100%;
+}
+
+.TaskEditContainer {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  width: 0;
+  background-color: gainsboro;
+  height: 100%;
+  z-index: 100;
+  transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in; /* Firefox 4 */
+  -webkit-transition: all 0.1s ease-in; /* Safari 和 Chrome */
+  -o-transition: all 0.1s ease-in; /* Opera */
+}
+
+.Opened {
+  width: 80%;
 }

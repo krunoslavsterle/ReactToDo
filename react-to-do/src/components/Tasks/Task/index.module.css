@@ -1,22 +1,37 @@
 .Task {
   z-index: 5;
-  min-height: 52px;
   position: relative;
   display: flex;
-  align-items: center;
   border-bottom: 0.2px solid gainsboro;
-  cursor: pointer;
-
   margin: 0 12px;
 }
 
-.Task:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.Selected {
+  background-color: rgba(130, 127, 255, 0.1);
+}
+
+.Task:active {
+  background-color: transparent;
+}
+
+.TaskContainer {
+  min-height: 52px;
+  position: relative;
+  height: 100%;
+  width: auto;
+  align-items: center;
+  display: flex;
+}
+
+.TaskContainerWide {
+  width: 100%;
+}
+
+.CursorPointer {
+  cursor: pointer;
 }
 
 .TaskBody {
-  display: flex;
-  align-items: center;
   width: 100%;
   padding-left: 10px;
 }
@@ -24,7 +39,7 @@
 .CheckIcon {
   cursor: pointer;
   color: #827fff;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .TaskButton {
@@ -35,4 +50,10 @@
 
 .TaskButtonCompleted {
   text-decoration: line-through;
+}
+
+@media (min-width: 600px) {
+  .Task:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }
