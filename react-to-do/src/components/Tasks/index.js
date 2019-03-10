@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import classes from "./index.module.css";
 import Task from "./Task";
+import NewTask from "./NewTask";
 
 class Tasks extends Component {
   state = {
@@ -16,10 +17,19 @@ class Tasks extends Component {
   taskStateChangedHandler = id => {
     this.setState(prevState => {
       var updatedTasks = [...this.state.tasks];
-
       var task = updatedTasks.find(t => t.id === id);
       task.completed = !task.completed;
 
+      return { tasks: updatedTasks };
+    });
+  };
+
+  addNewTaskHandler = description => {
+    this.setState(prevState => {
+      var updatedTasks = [...this.state.tasks];
+      var nextId = updatedTasks[updatedTasks.length - 1].id + 1;
+      var newTask = { id: nextId, description: description, completed: false };
+      updatedTasks.push(newTask);
       return { tasks: updatedTasks };
     });
   };
@@ -37,6 +47,7 @@ class Tasks extends Component {
             />
           );
         })}
+        <NewTask taskCreated={this.addNewTaskHandler} />
       </div>
     );
   }
