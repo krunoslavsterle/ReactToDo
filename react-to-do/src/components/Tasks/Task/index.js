@@ -4,9 +4,12 @@ import classes from "./index.module.css";
 
 const Task = props => {
   const iconClasses = ["material-icons", "icon", "icon-md", classes.CheckIcon];
+
   let checkIcon = "check_box_outline_blank";
+  let taskButtonClasses = [classes.TaskButton];
   if (props.completed) {
     checkIcon = "check_box";
+    taskButtonClasses.push(classes.TaskButtonCompleted);
   }
 
   return (
@@ -15,7 +18,7 @@ const Task = props => {
         <i className={iconClasses.join(" ")} onClick={props.stateChanged}>
           {checkIcon}
         </i>
-        <div className={classes.TaskButton}>{props.description}</div>
+        <div className={taskButtonClasses.join(" ")}>{props.description}</div>
       </div>
     </div>
   );

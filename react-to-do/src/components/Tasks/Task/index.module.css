@@ -1,24 +1,38 @@
 .Task {
+  z-index: 5;
   min-height: 52px;
   position: relative;
-  padding: 0 12px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  border-bottom: 0.2px solid gainsboro;
+  cursor: pointer;
+
+  margin: 0 12px;
+}
+
+.Task:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .TaskBody {
-  border-bottom: 0.2px solid gainsboro;
   display: flex;
   align-items: center;
-  padding-bottom: 10px;
+  width: 100%;
+  padding-left: 10px;
 }
 
 .CheckIcon {
   cursor: pointer;
   color: #827fff;
+  z-index: 10;
 }
 
 .TaskButton {
   text-align: left;
   padding-left: 15px;
+  width: 100%;
+}
+
+.TaskButtonCompleted {
+  text-decoration: line-through;
 }
