@@ -25,3 +25,9 @@
 .Opened {
   width: 80%;
 }
+
+@media (min-width: 600px) {
+  .Opened {
+    width: 380px;
+  }
+}

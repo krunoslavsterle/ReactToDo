@@ -7,13 +7,13 @@
   border-bottom: 0.2px solid gainsboro;
   cursor: pointer;
   margin: 0 12px;
+  padding-left: 10px;
 }
 
 .TaskBody {
   display: flex;
   align-items: center;
   width: 100%;
-  padding-left: 10px;
 }
 
 .CheckIcon {
@@ -24,6 +24,7 @@
 .TaskButton {
   text-align: left;
   padding-left: 15px;
+  width: 100%;
 }
 
 .TaskButton input {

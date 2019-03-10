@@ -35,9 +35,7 @@ class Tasks extends Component {
     });
   };
 
-  taskStateChangedHandler = (event, id) => {
-    event.preventDefault();
-
+  taskStateChangedHandler = id => {
     this.setState(prevState => {
       var updatedTasks = [...this.state.tasks];
       var task = updatedTasks.find(t => t.id === id);
@@ -84,9 +82,7 @@ class Tasks extends Component {
                 description={task.description}
                 selected={this.state.selected === task.id}
                 completed={task.completed}
-                stateChanged={event =>
-                  this.taskStateChangedHandler(event, task.id)
-                }
+                stateChanged={() => this.taskStateChangedHandler(task.id)}
                 taskSelected={() => this.taskSelectionHandler(task.id)}
               />
             );
