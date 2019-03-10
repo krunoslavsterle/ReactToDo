@@ -24,7 +24,8 @@ class SideDrawer extends Component {
     return (
       <div className={drawerClasses.join(" ")}>
         <DrawerToggle clicked={this.drawerToggleHandler} />
-        <DrawerToggle />
+        <i className="material-icons icon icon-white icon-md">done_all</i>
+        <i className="material-icons icon-white icon-md">star_rate</i>
       </div>
     );
   }
