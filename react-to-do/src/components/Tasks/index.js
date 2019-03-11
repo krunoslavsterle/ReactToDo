@@ -46,7 +46,6 @@ class Tasks extends Component {
   };
 
   taskDeletedHandler = id => {
-    console.log("id to delte: " + id);
     this.setState(prevState => {
       const editedTasks = [...prevState.tasks];
       const deletedTask = editedTasks.find(t => t.id === id);
@@ -57,7 +56,7 @@ class Tasks extends Component {
 
   taskStateChangedHandler = id => {
     this.setState(prevState => {
-      const updatedTasks = [...this.state.tasks];
+      const updatedTasks = [...prevState.tasks];
       const task = updatedTasks.find(t => t.id === id);
       task.completed = !task.completed;
 
@@ -67,13 +66,17 @@ class Tasks extends Component {
 
   addNewTaskHandler = description => {
     this.setState(prevState => {
-      let updatedTasks = [...this.state.tasks];
+      let updatedTasks = [...prevState.tasks];
       let nextId = 1;
       if (updatedTasks.length > 0) {
         nextId = updatedTasks[updatedTasks.length - 1].id + 1;
       }
 
-      var newTask = { id: nextId, description: description, completed: false };
+      const newTask = {
+        id: nextId,
+        description: description,
+        completed: false
+      };
       updatedTasks.push(newTask);
       return { tasks: updatedTasks };
     });
@@ -84,7 +87,7 @@ class Tasks extends Component {
     let taskEditClasses = [classes.TaskEditContainer];
 
     if (this.state.selected) {
-      var task = this.state.tasks.find(t => t.id === this.state.selected);
+      const task = this.state.tasks.find(t => t.id === this.state.selected);
       taskEdit = (
         <TaskEdit
           task={task}
