@@ -10,19 +10,32 @@ class TaskEdit extends Component {
   };
 
   changeNameHandler = event => {
-    var newTask = { ...this.state.task };
+    const newTask = { ...this.state.task };
     newTask.description = event.target.value;
     this.setState({ task: newTask });
   };
 
   changeNoteHandler = event => {
-    var newTask = { ...this.state.task };
+    const newTask = { ...this.state.task };
     newTask.note = event.target.value;
     this.setState({ task: newTask });
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.task.id === state.task.id) {
+      return state;
+    }
+
+    // If new task was selected need to reset the state values.
+    return {
+      task: {
+        ...props.task
+      }
+    };
+  }
+
   render() {
-    const { id, description, completed, note } = this.state.task;
+    const { description, note } = this.state.task;
     let drawerClasses = [classes.TaskEdit, classes.Opened];
 
     return (
@@ -49,21 +62,31 @@ class TaskEdit extends Component {
           </div>
         </div>
 
-        <button
-          className={classes.ConfirmButton}
-          type="button"
-          onClick={() => this.props.saved(this.state.task)}
-        >
-          SAVE
-        </button>
+        <div className={classes.Buttons}>
+          <button
+            className={[classes.Button, classes.Confirm].join(" ")}
+            type="button"
+            onClick={() => this.props.saved(this.state.task)}
+          >
+            SAVE
+          </button>
 
-        <button
-          className={classes.ConfirmButton}
-          type="button"
-          onClick={this.props.cancelled}
-        >
-          CANCEL
-        </button>
+          <button
+            className={[classes.Button, classes.Delete].join(" ")}
+            type="button"
+            onClick={this.props.deleted}
+          >
+            DELETE
+          </button>
+
+          <button
+            className={[classes.Button, classes.Cancel].join(" ")}
+            type="button"
+            onClick={this.props.cancelled}
+          >
+            CANCEL
+          </button>
+        </div>
       </div>
     );
   }

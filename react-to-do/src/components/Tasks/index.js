@@ -8,10 +8,20 @@ import TaskEdit from "./TaskEdit";
 class Tasks extends Component {
   state = {
     tasks: [
-      { id: 1, description: "This is my first task", completed: false },
-      { id: 2, description: "This is my second task", completed: true },
-      { id: 3, description: "Buy some milk", completed: true },
-      { id: 4, description: "Study React", completed: false }
+      {
+        id: 1,
+        description: "This is my first task",
+        completed: false,
+        note: ""
+      },
+      {
+        id: 2,
+        description: "This is my second task",
+        completed: true,
+        note: ""
+      },
+      { id: 3, description: "Buy some milk", completed: true, note: "" },
+      { id: 4, description: "Study React", completed: false, note: "" }
     ],
     selected: null
   };
@@ -26,8 +36,8 @@ class Tasks extends Component {
 
   taskSavedHandler = savedTask => {
     this.setState(prevState => {
-      var editedTasks = [...prevState.tasks];
-      var task = editedTasks.find(t => t.id === savedTask.id);
+      const editedTasks = [...prevState.tasks];
+      const task = editedTasks.find(t => t.id === savedTask.id);
       task.description = savedTask.description;
       task.note = savedTask.note;
 
@@ -35,10 +45,20 @@ class Tasks extends Component {
     });
   };
 
+  taskDeletedHandler = id => {
+    console.log("id to delte: " + id);
+    this.setState(prevState => {
+      const editedTasks = [...prevState.tasks];
+      const deletedTask = editedTasks.find(t => t.id === id);
+      editedTasks.splice(editedTasks.indexOf(deletedTask), 1);
+      return { tasks: editedTasks, selected: null };
+    });
+  };
+
   taskStateChangedHandler = id => {
     this.setState(prevState => {
-      var updatedTasks = [...this.state.tasks];
-      var task = updatedTasks.find(t => t.id === id);
+      const updatedTasks = [...this.state.tasks];
+      const task = updatedTasks.find(t => t.id === id);
       task.completed = !task.completed;
 
       return { tasks: updatedTasks };
@@ -47,8 +67,12 @@ class Tasks extends Component {
 
   addNewTaskHandler = description => {
     this.setState(prevState => {
-      var updatedTasks = [...this.state.tasks];
-      var nextId = updatedTasks[updatedTasks.length - 1].id + 1;
+      let updatedTasks = [...this.state.tasks];
+      let nextId = 1;
+      if (updatedTasks.length > 0) {
+        nextId = updatedTasks[updatedTasks.length - 1].id + 1;
+      }
+
       var newTask = { id: nextId, description: description, completed: false };
       updatedTasks.push(newTask);
       return { tasks: updatedTasks };
@@ -66,6 +90,7 @@ class Tasks extends Component {
           task={task}
           cancelled={this.taskUnselectedHandler}
           saved={this.taskSavedHandler}
+          deleted={() => this.taskDeletedHandler(task.id)}
         />
       );
 
