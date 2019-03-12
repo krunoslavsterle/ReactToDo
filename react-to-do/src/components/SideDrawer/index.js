@@ -24,11 +24,29 @@ class SideDrawer extends Component {
     return (
       <div className={drawerClasses.join(" ")}>
         <DrawerToggle clicked={this.drawerToggleHandler} />
-        <div className={[classes.DrawerToggle, classes.Selected].join(" ")}>
-          <i className="material-icons icon icon-white icon-md">done_all</i>
+
+        <div
+          className={[
+            classes.Container,
+            classes.ContainerFirst,
+            classes.Selected
+          ].join(" ")}
+        >
+          <div className={[classes.DrawerToggle].join(" ")}>
+            <i className="material-icons icon icon-white icon-md">done_all</i>
+          </div>
+          <div className={classes.Label}>
+            <h4>Home</h4>
+          </div>
         </div>
-        <div className={[classes.DrawerToggle].join(" ")}>
-          <i className="material-icons icon-white icon-md">star_rate</i>
+
+        <div className={[classes.Container].join(" ")}>
+          <div className={[classes.DrawerToggle].join(" ")}>
+            <i className="material-icons icon-white icon-md">star_rate</i>
+          </div>
+          <div className={classes.Label}>
+            <h4>Important</h4>
+          </div>
         </div>
       </div>
     );

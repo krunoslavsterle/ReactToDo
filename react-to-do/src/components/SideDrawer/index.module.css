@@ -15,10 +15,28 @@
 }
 
 .DrawerToggle {
-  cursor: pointer;
-  margin-top: 10px;
-  margin-bottom: 25px;
-  padding: 10px 10px 10px 10px;
+  position: relative;
+  display: flex;
+}
+
+.DrawerToggle i {
+  width: 28px;
+}
+
+.Label {
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  align-items: center;
+}
+
+.Label h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  padding-top: 2px;
+  padding-left: 30px;
 }
 
 .Selected {
@@ -27,6 +45,17 @@
 
 .Opened {
   width: 60%;
+}
+
+.Container {
+  cursor: pointer;
+  padding: 10px 10px 10px 10px;
+  position: relative;
+  display: flex;
+}
+
+.ContainerFirst {
+  margin-top: 10px;
 }
 
 @media (min-width: 600px) {
