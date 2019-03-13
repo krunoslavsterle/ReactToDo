@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import { AuthUserContext } from "../Session";
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
 import HomePage from "../Home";
