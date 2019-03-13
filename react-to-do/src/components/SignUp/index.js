@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import { withFirebase } from "../Firebase";
 import classes from "./index.module.css";
+import * as ROUTES from "../../constants/routes";
 
 const INITIAL_STATE = {
   username: "",
@@ -21,7 +23,7 @@ class SignUp extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        // TODO: ROUTER.
+        this.props.history.push(ROUTES.HOME);
       })
       .catch(error => {
         this.setState({ error });
