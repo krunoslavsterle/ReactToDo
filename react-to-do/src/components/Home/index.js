@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 
+import { withAuthorization } from "../Session";
 import Header from "../Header";
 import SideDrawer from "../SideDrawer";
 import Tasks from "../Tasks";
@@ -22,4 +23,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default withAuthorization(HomePage);
