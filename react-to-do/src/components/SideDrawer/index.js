@@ -42,7 +42,7 @@ class SideDrawer extends Component {
 
         <div className={[classes.Container].join(" ")}>
           <div className={[classes.DrawerToggle].join(" ")}>
-            <i className="material-icons icon-white icon-md">star_rate</i>
+            <i className="material-icons icon icon-white icon-md">star</i>
           </div>
           <div className={classes.Label}>
             <h4>Important</h4>
