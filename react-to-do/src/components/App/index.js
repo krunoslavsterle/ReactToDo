@@ -6,7 +6,7 @@ import HomePage from "../Home";
 
 const App = () => (
   <div className="App">
-    <HomePage />
+    <SignUp />
   </div>
 );
 
