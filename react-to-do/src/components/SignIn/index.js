@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
@@ -73,6 +73,11 @@ class SignIn extends Component {
             >
               LOGIN
             </button>
+
+            <div className={classes.AdditionalAction}>
+              Not Registrated?{" "}
+              <Link to={ROUTES.SIGN_UP}>Create an account</Link>
+            </div>
 
             {error && <p>{error.message}</p>}
           </form>

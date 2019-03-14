@@ -17,6 +17,7 @@
 .DrawerToggle {
   position: relative;
   display: flex;
+  padding: 10px 10px 10px 10px;
 }
 
 .DrawerToggle i {
@@ -29,6 +30,7 @@
   vertical-align: middle;
   color: white;
   align-items: center;
+  padding: 10px 0 10px 0;
 }
 
 .Label h4 {
@@ -49,7 +51,6 @@
 
 .Container {
   cursor: pointer;
-  padding: 10px 10px 10px 10px;
   position: relative;
   display: flex;
 }

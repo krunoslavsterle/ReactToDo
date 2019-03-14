@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import classes from "./index.module.css";
 import DrawerToggle from "./DrawerToggle";
+import { withFirebase } from "../Firebase";
 
 class SideDrawer extends Component {
   state = {
@@ -13,6 +14,11 @@ class SideDrawer extends Component {
     this.setState(prevState => {
       return { opened: !prevState.opened };
     });
+  };
+
+  signOutClickedHandler = () => {
+    console.log("signing out");
+    this.props.firebase.doSignOut();
   };
 
   render() {
@@ -48,9 +54,23 @@ class SideDrawer extends Component {
             <h4>Important</h4>
           </div>
         </div>
+
+        <div
+          className={[classes.Container].join(" ")}
+          onClick={this.signOutClickedHandler}
+        >
+          <div className={[classes.DrawerToggle].join(" ")}>
+            <i className="material-icons icon icon-white icon-md">
+              power_settings_new
+            </i>
+          </div>
+          <div className={classes.Label}>
+            <h4>Sign Out</h4>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default SideDrawer;
+export default withFirebase(SideDrawer);

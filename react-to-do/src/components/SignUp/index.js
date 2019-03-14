@@ -88,6 +88,10 @@ class SignUp extends Component {
               SIGN UP
             </button>
 
+            <div className={classes.AdditionalAction}>
+              Already have an account? <Link to={ROUTES.SIGN_IN}>Sign in</Link>
+            </div>
+
             {error && <p>{error.message}</p>}
           </form>
         </div>
