@@ -27,7 +27,6 @@ class NewTask extends Component {
 
   addNewTask = () => {
     if (this.state.input !== "") {
-      // TODO: Check how to handle this case!
       this.setState({ input: "" });
       this.props.taskCreated(this.state.input);
     }

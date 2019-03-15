@@ -1,30 +1,40 @@
 import React, { Component, Fragment } from "react";
 
 import classes from "./index.module.css";
+import { withFirebase } from "../Firebase";
+import { AuthUserContext } from "../Session";
 import Task from "./Task";
 import NewTask from "./NewTask";
 import TaskEdit from "./TaskEdit";
 
-class Tasks extends Component {
+class BaseTasks extends Component {
+  static userContext = AuthUserContext.Consumer;
   state = {
-    tasks: [
-      {
-        id: 1,
-        description: "This is my first task",
-        completed: false,
-        note: ""
-      },
-      {
-        id: 2,
-        description: "This is my second task",
-        completed: true,
-        note: ""
-      },
-      { id: 3, description: "Buy some milk", completed: true, note: "" },
-      { id: 4, description: "Study React", completed: false, note: "" }
-    ],
+    tasks: [],
     selected: null
   };
+
+  componentDidMount() {
+    this.props.firebase.tasks(this.props.authUser.uid).on("value", snapshot => {
+      var data = snapshot.val();
+      const tasks = [];
+      for (let key in data) {
+        tasks.push({
+          ...data[key],
+          id: key
+        });
+      }
+
+      this.setState({
+        tasks: tasks,
+        selected: null
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this.props.firebase.tasks(this.props.authUser.uid).off();
+  }
 
   taskSelectionHandler = id => {
     this.setState({ selected: id });
@@ -35,50 +45,28 @@ class Tasks extends Component {
   };
 
   taskSavedHandler = savedTask => {
-    this.setState(prevState => {
-      const editedTasks = [...prevState.tasks];
-      const task = editedTasks.find(t => t.id === savedTask.id);
-      task.description = savedTask.description;
-      task.note = savedTask.note;
-
-      return { tasks: editedTasks, selected: null };
+    this.props.firebase.task(this.props.authUser.uid, savedTask.id).update({
+      description: savedTask.description,
+      note: savedTask.note
     });
   };
 
   taskDeletedHandler = id => {
-    this.setState(prevState => {
-      const editedTasks = [...prevState.tasks];
-      const deletedTask = editedTasks.find(t => t.id === id);
-      editedTasks.splice(editedTasks.indexOf(deletedTask), 1);
-      return { tasks: editedTasks, selected: null };
-    });
+    this.props.firebase.task(this.props.authUser.uid, id).remove();
   };
 
   taskStateChangedHandler = id => {
-    this.setState(prevState => {
-      const updatedTasks = [...prevState.tasks];
-      const task = updatedTasks.find(t => t.id === id);
-      task.completed = !task.completed;
-
-      return { tasks: updatedTasks };
+    const task = this.state.tasks.find(t => t.id === id);
+    this.props.firebase.task(this.props.authUser.uid, id).update({
+      completed: !task.completed
     });
   };
 
   addNewTaskHandler = description => {
-    this.setState(prevState => {
-      let updatedTasks = [...prevState.tasks];
-      let nextId = 1;
-      if (updatedTasks.length > 0) {
-        nextId = updatedTasks[updatedTasks.length - 1].id + 1;
-      }
-
-      const newTask = {
-        id: nextId,
-        description: description,
-        completed: false
-      };
-      updatedTasks.push(newTask);
-      return { tasks: updatedTasks };
+    this.props.firebase.tasks(this.props.authUser.uid).push({
+      description: description,
+      completed: false,
+      note: ""
     });
   };
 
@@ -123,4 +111,10 @@ class Tasks extends Component {
   }
 }
 
-export default Tasks;
+const Tasks = props => (
+  <AuthUserContext.Consumer>
+    {authUser => <BaseTasks {...props} authUser={authUser} />}
+  </AuthUserContext.Consumer>
+);
+
+export default withFirebase(Tasks);
